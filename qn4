@@ -1,0 +1,28 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        String ticket = "203";
+        int k = 2;
+        System.out.println(minimizeCost(ticket, k));
+    }
+
+    public static String minimizeCost(String ticket, int k) {
+        if (k >= ticket.length() - 1) {
+            return String.valueOf(Collections.min(ticket.chars().boxed().collect(Collectors.toList())));
+        }
+        PriorityQueue<Character> pq = new PriorityQueue<>((a, b) -> b - a);
+        for (char c : ticket.toCharArray()) {
+            pq.offer(c);
+        }
+        for (int i = 0; i < k; i++) {
+            pq.poll();
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!pq.isEmpty()) {
+            sb.append(pq.poll());
+        }
+        return sb.toString();
+    }
+}
