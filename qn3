@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 100;
+        int m = 500;
+        findSteppingNumbers(n, m);
+    }
+
+    public static void findSteppingNumbers(int n, int m) {
+        for (int i = n; i <= m; i++) {
+            if (isSteppingNumber(i)) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+
+    public static boolean isSteppingNumber(int num) {
+        String str = String.valueOf(num);
+        for (int i = 1; i < str.length(); i++) {
+            if (Math.abs(str.charAt(i) - str.charAt(i - 1)) != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
